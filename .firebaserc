@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "employees-angular-b7388": {
+      "hosting": {
+        "crud-empleados": [
+          "employees-angular-b7388"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "employees-angular-b7388"
+  }
+}

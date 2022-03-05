@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-create-employees',
@@ -8,13 +9,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateEmployeesComponent implements OnInit {
   createEmployee: FormGroup;
-  submitted = false
+  submitted: boolean = false
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder , private _employeeService: EmployeeService) { 
     this.createEmployee = this.formBuilder.group({
       name: ['' , Validators.required],
       last: ['' , Validators.required],
-      dni: ['' ,[Validators.required , Validators.max(8)]],
+      dni: ['' , Validators.required],
       salary: ['' , Validators.required]
     })
   }
@@ -23,11 +24,12 @@ export class CreateEmployeesComponent implements OnInit {
   }
   
   addEmployee(){
+    this.submitted = true;
     
     if(this.createEmployee.invalid){
-      this.submitted = true;
       return;
     }
+
     const employee:any = {
       name: this.createEmployee.value.name,
       last: this.createEmployee.value.last,
@@ -36,9 +38,12 @@ export class CreateEmployeesComponent implements OnInit {
       createDate: new Date(),
       updateDate: new Date()
     }
-console.log(employee)
-
-    console.log(employee)
+    
+         this._employeeService.addEmployee(employee).then(() => {
+           console.log('Empleado agregado')
+         }).catch((error) => {
+           console.log(error)
+         })
+         console.log(this.createEmployee)
   }
-
 }

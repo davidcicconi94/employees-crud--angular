@@ -14,6 +14,7 @@ import { ListEmployeesComponent } from './components/list-employees/list-employe
 import { CreateEmployeesComponent } from './components/create-employees/create-employees.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { environment } from '../environments/environment';
+import { EmployeeService } from './services/employee.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { environment } from '../environments/environment';
     AngularFirestoreModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

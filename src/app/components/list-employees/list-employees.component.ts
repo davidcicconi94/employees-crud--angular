@@ -8,14 +8,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./list-employees.component.css']
 })
 export class ListEmployeesComponent implements OnInit {
-  items: Observable <any[]>
 
-  constructor(firestore: AngularFirestore) {
-    this.items = firestore.collection('items').valueChanges();
+  constructor() {
 
    }
 
   ngOnInit(): void {
   }
+
+
 
 }

@@ -6,6 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import {AngularFireModule} from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
 // Components
@@ -29,7 +33,9 @@ import { EmployeeService } from './services/employee.service';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireModule,
     AngularFirestoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [EmployeeService],
   bootstrap: [AppComponent]

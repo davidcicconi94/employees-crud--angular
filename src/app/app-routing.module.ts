@@ -7,26 +7,29 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'list-employees',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'list-employees',
-    component: ListEmployeesComponent
+    component: ListEmployeesComponent,
   },
   {
     path: 'create-employee',
-    component: CreateEmployeesComponent
+    component: CreateEmployeesComponent,
+  },
+  {
+    path: 'edit-employee/:id',
+    component: CreateEmployeesComponent,
   },
   {
     path: '**',
     redirectTo: 'list-employees',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

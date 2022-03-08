@@ -17,4 +17,12 @@ export class EmployeeService {
       .collection('employees', (ref) => ref.orderBy('createDate', 'asc'))
       .snapshotChanges();
   }
+
+  deleteEmployee(id: string): Promise<any> {
+    return this.firestore.collection('employees').doc(id).delete();
+  }
+
+  editEmployee(id: string): Observable<any> {
+    return this.firestore.collection('employees').doc(id).snapshotChanges();
+  }
 }

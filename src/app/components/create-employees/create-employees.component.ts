@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from 'src/app/services/employee.service';
 
@@ -13,12 +13,15 @@ export class CreateEmployeesComponent implements OnInit {
   createEmployee: FormGroup;
   submitted: boolean = false;
   loading: boolean = false;
+  id!: string | null;
+  text: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private _employeeService: EmployeeService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private aRoute: ActivatedRoute
   ) {
     this.createEmployee = this.formBuilder.group({
       name: ['', Validators.required],
@@ -26,9 +29,13 @@ export class CreateEmployeesComponent implements OnInit {
       dni: ['', Validators.required],
       salary: ['', Validators.required],
     });
+    this.id = this.aRoute.snapshot.paramMap.get('id');
+    console.log(this.id);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.editEmployee();
+  }
 
   addEmployee() {
     this.submitted = true;
@@ -52,7 +59,7 @@ export class CreateEmployeesComponent implements OnInit {
       .addEmployee(employee)
       .then(() => {
         this.toastr.success(
-          'Empleado registrado con éxito!',
+          '¡Empleado registrado con éxito!',
           'The employee was successfully registered!',
           { positionClass: 'toast-bottom-right' }
         );
@@ -65,5 +72,13 @@ export class CreateEmployeesComponent implements OnInit {
         this.loading = false;
       });
     console.log(this.createEmployee);
+  }
+
+  editEmployee() {
+    if (this.id !== null) {
+      this._employeeService.editEmployee(this.id).subscribe((data) => {
+        console.log(data);
+      });
+    }
   }
 }

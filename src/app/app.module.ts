@@ -17,6 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { environment } from '../environments/environment';
 import { EmployeeService } from './services/employee.service';
 import { ThousandsPipePipe } from './thousands-pipe.pipe';
+import { ActivatedRoute } from '@angular/router';
 
 @NgModule({
   declarations: [

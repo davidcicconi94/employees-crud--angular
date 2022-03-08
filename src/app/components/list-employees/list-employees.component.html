@@ -14,31 +14,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>David</td>
-                    <td>Cicconi</td>
-                    <td>37.447.255</td>
-                    <td>35000</td>
-                    <td>
-                      <i class="fa-solid fa-pen-to-square fa-lg text-info mx-2"></i> 
-                      <i class="fa-solid fa-trash-can fa-lg text-danger"></i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Estefania</td>
-                    <td>Astudillo</td>
-                    <td>41.217.928</td>
-                    <td>35000</td>
-                    <td>
-                      <i class="fa-solid fa-pen-to-square fa-lg text-info mx-2"></i> 
-                      <i class="fa-solid fa-trash-can fa-lg text-danger"></i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Mia</td>
-                    <td>Cicconi</td>
-                    <td>78.252.266</td>
-                    <td>45000</td>
+                  <tr *ngFor="let employee of employees">
+                    <td> {{employee.name}} </td>
+                    <td> {{employee.last}} </td>
+                    <td> {{employee.dni/1000}} </td>
+                    <td> {{employee.salary | currency}} </td>
                     <td>
                       <i class="fa-solid fa-pen-to-square fa-lg text-info mx-2"></i> 
                       <i class="fa-solid fa-trash-can fa-lg text-danger"></i>

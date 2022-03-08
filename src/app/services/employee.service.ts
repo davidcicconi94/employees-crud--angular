@@ -13,6 +13,8 @@ export class EmployeeService {
   }
 
   getEmployees(): Observable<any> {
-    return this.firestore.collection('employees').snapshotChanges();
+    return this.firestore
+      .collection('employees', (ref) => ref.orderBy('createDate', 'asc'))
+      .snapshotChanges();
   }
 }

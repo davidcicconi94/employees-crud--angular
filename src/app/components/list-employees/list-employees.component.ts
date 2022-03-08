@@ -9,7 +9,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
   styleUrls: ['./list-employees.component.css'],
 })
 export class ListEmployeesComponent implements OnInit {
-  employee: any[] = [];
+  employees: any[] = [];
 
   constructor(private _employeeService: EmployeeService) {}
 
@@ -19,15 +19,15 @@ export class ListEmployeesComponent implements OnInit {
 
   getEmployee() {
     this._employeeService.getEmployees().subscribe((data) => {
-      this.employee = [];
+      this.employees = [];
       data.forEach((element: any) => {
         // console.log(element.payload.doc.data());
-        this.employee.push({
+        this.employees.push({
           id: element.payload.doc.id,
           ...element.payload.doc.data(),
         });
       });
-      console.log(this.employee);
+      console.log(this.employees);
     });
   }
 }

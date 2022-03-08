@@ -14,7 +14,7 @@ export class CreateEmployeesComponent implements OnInit {
   submitted: boolean = false;
   loading: boolean = false;
   id!: string | null;
-  text: string = '';
+  title: string = '';
 
   constructor(
     private formBuilder: FormBuilder,

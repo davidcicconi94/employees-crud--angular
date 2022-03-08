@@ -17,7 +17,7 @@
                   <tr *ngFor="let employee of employees">
                     <td> {{employee.name}} </td>
                     <td> {{employee.last}} </td>
-                    <td> {{employee.dni/1000}} </td>
+                    <td> {{employee.dni/1000 | thousandsPipe}} </td>
                     <td> {{employee.salary | currency}} </td>
                     <td>
                       <i class="fa-solid fa-pen-to-square fa-lg text-info mx-2"></i> 

@@ -16,6 +16,7 @@ import { CreateEmployeesComponent } from './components/create-employees/create-e
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { environment } from '../environments/environment';
 import { EmployeeService } from './services/employee.service';
+import { ThousandsPipePipe } from './thousands-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { EmployeeService } from './services/employee.service';
     ListEmployeesComponent,
     CreateEmployeesComponent,
     NavbarComponent,
+    ThousandsPipePipe,
   ],
 
   imports: [
@@ -35,7 +37,7 @@ import { EmployeeService } from './services/employee.service';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService, ThousandsPipePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

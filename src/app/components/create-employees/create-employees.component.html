@@ -3,14 +3,14 @@
         <div class="col-lg-6 offset-lg-3">
             <div class="card text-center">
                 <div class="card-body">
-                    <h3>Create new employee:</h3>
+                    <h3> {{ title }} </h3>
                     <span>
                         <div *ngIf="loading" class="spinner-border mt-2" role="status">
                             <span class="visually-hidden">Loading...</span>
                           </div>
                     </span>
                     <span *ngIf="submitted && createEmployee.invalid" class="badge bg-danger ">ALL FIELDS ARE REQUIRED</span>
-                    <form class="mt-4" [formGroup]="createEmployee" (ngSubmit)="addEmployee()">
+                    <form class="mt-4" [formGroup]="createEmployee" (ngSubmit)="addEditEmployee()">
                         <div class="row">
                             <div class="col">
                                 <input type="text" class="form-control" placeholder="Name" formControlName="name">

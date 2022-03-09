@@ -25,4 +25,8 @@ export class EmployeeService {
   editEmployee(id: string): Observable<any> {
     return this.firestore.collection('employees').doc(id).snapshotChanges();
   }
+
+  updateEmployee(id: string, data: any): Promise<any> {
+    return this.firestore.collection('employees').doc(id).update(data);
+  }
 }

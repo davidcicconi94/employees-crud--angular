@@ -13,8 +13,8 @@ export class CreateEmployeesComponent implements OnInit {
   createEmployee: FormGroup;
   submitted: boolean = false;
   loading: boolean = false;
-  id!: string | null;
-  title: string = '';
+  id: string | null;
+  title = 'Create new employee:';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,13 +37,21 @@ export class CreateEmployeesComponent implements OnInit {
     this.editEmployee();
   }
 
-  addEmployee() {
+  addEditEmployee() {
     this.submitted = true;
 
     if (this.createEmployee.invalid) {
       return;
     }
 
+    if (this.id === null) {
+      this.addEmployee();
+    } else {
+      this.edit(this.id);
+    }
+  }
+
+  addEmployee() {
     const employee: any = {
       name: this.createEmployee.value.name,
       last: this.createEmployee.value.last,
@@ -71,13 +79,53 @@ export class CreateEmployeesComponent implements OnInit {
         console.log(error);
         this.loading = false;
       });
-    console.log(this.createEmployee);
+  }
+
+  //
+
+  edit(id: string) {
+    const employee: any = {
+      name: this.createEmployee.value.name,
+      last: this.createEmployee.value.last,
+      dni: this.createEmployee.value.dni,
+      salary: this.createEmployee.value.salary,
+      updateDate: new Date(),
+    };
+
+    this.loading = true;
+
+    this._employeeService
+      .updateEmployee(id, employee)
+      .then(() => {
+        this.loading = false;
+        this.toastr.info(
+          '¡Empleado modificado con éxito!',
+          'The employee was succesfully updated!',
+          {
+            positionClass: 'toast-bottom-right',
+          }
+        );
+        this.router.navigate(['/list-employees']);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   editEmployee() {
     if (this.id !== null) {
+      this.loading = true;
+      this.title = 'Edit employee:';
+
       this._employeeService.editEmployee(this.id).subscribe((data) => {
-        console.log(data);
+        this.loading = false;
+
+        this.createEmployee.setValue({
+          name: data.payload.data()['name'],
+          last: data.payload.data()['last'],
+          dni: data.payload.data()['dni'],
+          salary: data.payload.data()['salary'],
+        });
       });
     }
   }

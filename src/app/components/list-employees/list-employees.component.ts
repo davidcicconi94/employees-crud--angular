@@ -23,7 +23,6 @@ export class ListEmployeesComponent implements OnInit {
     this._employeeService.getEmployees().subscribe((data) => {
       this.employees = [];
       data.forEach((element: any) => {
-        // console.log(element.payload.doc.data());
         this.employees.push({
           id: element.payload.doc.id,
           ...element.payload.doc.data(),

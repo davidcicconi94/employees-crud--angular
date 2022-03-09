@@ -32,7 +32,7 @@ import { ActivatedRoute } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireModule,
+    // AngularFireModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
